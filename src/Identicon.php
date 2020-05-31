@@ -3,6 +3,8 @@
 namespace Wuchienkun\Identicon;
 
 use Wuchienkun\Identicon\Generator\GdGenerator;
+use Wuchienkun\Identicon\Generator\SvgGenerator;
+use Wuchienkun\Identicon\Generator\ImageMagickGenerator;
 use Wuchienkun\Identicon\Generator\GeneratorInterface;
 use Exception;
 
@@ -25,7 +27,18 @@ class Identicon
     public function __construct(GeneratorInterface $generator = null)
     {
         if ($generator === null)
-            $this->generator = new GdGenerator();
+            switch (config('identicon.generator')) {
+                case 'imagick':
+                    $this->generator = new ImageMagickGenerator();
+                    break;
+                case 'gd':
+                    $this->generator = new GdGenerator();
+                    break;
+                case 'svg':
+                default:
+                    $this->generator = new SvgGenerator();
+                    break;
+            }
         else
             $this->generator = $generator;
     }
