@@ -1,0 +1,37 @@
+{
+    "name": "wuchienkun/laravel-identicon",
+    "type": "library",
+    "description": "Identicon generator for Laravel.",
+    "authors": [
+        {
+            "name": "WuChienKun",
+            "email": "wujiankun1998@qq.com"
+        }
+    ],
+    "require": {
+        "ext-imagick": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Wuchienkun\\Identicon\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Wuchienkun\\Identicon\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Wuchienkun\\Identicon\\Providers\\IdenticonServiceProvider"
+            ],
+            "aliases": {
+                "Identicon": "Wuchienkun\\Identicon\\Identicon"
+            }
+        }
+    }
+}
